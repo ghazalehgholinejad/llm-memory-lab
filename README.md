@@ -55,3 +55,18 @@ Historical content is passed as data with provenance, not promoted to system ins
 - [Python sqlite3 documentation](https://docs.python.org/3/library/sqlite3.html) — parameterized SQL and transactions.
 
 Implementation and synthetic examples are original. Future work: embedding retrieval, source-grounded model summaries, user-confirmed facts with expiry, and separate answer-quality evaluation.
+
+## Reproducible evidence evaluation (v0.2)
+
+```bash
+python -m memory_lab.evaluate --budget 450
+python -m memory_lab.evaluate --budget 900 --output evaluation.json
+```
+
+Compare all four strategies with identical character budgets and message limits on five fixed synthetic queries. Reports include per-case selections, missing evidence IDs and macro means. Output files must be new; existing files are never overwritten.
+
+- **Source recall:** fraction of expected source messages selected.
+- **Excerpt recall:** fraction whose exact required excerpt survived selection. This catches compact previews that retain a source ID but lose its correction.
+- **Source precision:** expected source IDs divided by selected IDs (zero for an empty selection).
+
+An empty selection has zero recall; every case has at least one labeled source. Metrics are equally averaged over queries, not over individual facts. Expected excerpts are case-sensitive literal labels, not semantic judgments. Dataset version 1 includes a late correction, a paraphrase and a question needing two sources. It is a teaching fixture, not a held-out benchmark, and should not be used to claim general superiority or model answer accuracy.

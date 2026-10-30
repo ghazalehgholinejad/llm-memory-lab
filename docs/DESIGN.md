@@ -17,7 +17,7 @@ Tests exercise persistence, session isolation, scoped deletion, SQL parameters, 
 
 ## Next experiments
 
-1. Define held-out queries with expected evidence IDs and evaluate recall at equal budgets.
+1. Expand the v0.2 synthetic evaluation fixture into a separate held-out query set. The current five queries measure source and exact-excerpt recall at equal budgets; they are teaching examples, not independent evidence of generalization.
 2. Compare embeddings against lexical retrieval on paraphrases.
 3. Add a separate model-summary adapter and test coverage of corrections.
 4. Implement user-confirmed facts with sources, expiry and update/delete semantics.
